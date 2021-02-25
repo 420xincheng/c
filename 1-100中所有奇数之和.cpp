@@ -1,4 +1,4 @@
-//求1 + 2 + ...........+100中所有奇数的和。
+//脟贸1 + 2 + ...........+100脰脨脣霉脫脨脝忙脢媒碌脛潞脥隆拢
 #include <stdio.h>
 int main ()
 {
@@ -7,9 +7,7 @@ int main ()
 	
 	for (i=1;i<=100;i+=2)
 	{
-		sum = sum + i;
-		
-		
+		sum = sum + i;		
 	}
 	printf ("sum=%d\n",sum);
 	return 0;
