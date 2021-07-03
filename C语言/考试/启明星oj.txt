@@ -1,0 +1,59 @@
+1.我们给每一种树按照不同的种类编号，桃花树的编号为1，樱花树的编号为2，梅花树的编号为3，海棠花树的编号为4，玉兰花树的编号为5；
+第一步：按照编号的从小到大顺序来规划区域 。
+第二步：在每一种花树的区域内，按照树的高低进行排序。
+现在给你求索溪旁边一些树的种类ID和高度h，将他们规划好
+
+第一行一个正整数N（1<=N<=2000），表示总共有N颗待整理的树；
+接下来N行，每一行两个正整数ID和h（1<=ID<=5,1.00<=h<=100.00）,表示树的种类和高度。
+
+输出N行，输出排好序的树的种类和高度，中间用空格隔开,high保留两位小数
+
+#include <stdio.h>
+#define M 2000
+struct tree{
+	int ID;
+	double h;
+};
+void fun1(struct tree *q ,struct tree * p)
+{
+	struct tree t;
+	if(q->ID > p->ID )
+	{
+		t  = *q;
+		*q = *p;
+		*p = t;
+	}
+
+}
+void fun2(struct tree * m ,struct tree * n)
+{
+	struct tree l;
+	if(m->h > n->h )
+	{
+		l  = *m;
+		*m = *n;
+		*n = l;
+	}
+}
+int main ()
+{
+	int N,i,j;
+	scanf("%d",&N);
+	struct tree a[M];
+	for (i=0; i<N; i++)
+		scanf("%d %lf",&a[i].ID ,&a[i].h );
+	for(i=1; i<N;i++)
+	{
+		for(j=0;j<N-i;j++){
+			if(a[j].ID > a[j+1].ID )
+				fun1(&a[j],&a[j+1]);
+			if(a[j].ID ==a[j+1].ID )
+				if(a[j].h  > a[j+1].h )
+					fun2(&a[j],&a[j+1]);
+		}	
+	}
+
+	for(i=0; i<N; i++)
+	    printf("%d %.2lf\n",a[i].ID ,a[i].h );
+	return 0;
+}
